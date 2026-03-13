@@ -1,0 +1,398 @@
+/* --- APPLE DESIGN SYSTEM (Proměnné) --- */
+:root {
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-green: #34c759;
+    --apple-red: #ff3b30;
+    --bg-page: #f5f5f7; /* Typická Apple šedá pro pozadí */
+    --bg-panel: #ffffff;
+    --text-main: #1d1d1f;
+    --text-muted: #86868b;
+    --border-color: rgba(0, 0, 0, 0.06);
+    --radius-panel: 20px; /* Větší plynulé zaoblení panelů */
+    --radius-input: 12px; /* Zaoblení formulářů jako v iOS */
+    --radius-btn: 14px;
+    --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+/* --- ZÁKLAD A TYPOGRAFIE --- */
+body {
+    /* Použije originální fonty Apple zařízení (San Francisco), pokud je to možné */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Vyhlazení písma jako na Macu */
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    letter-spacing: -0.02em; /* Mírné sražení písmen, typické pro Apple */
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* --- PANELY (KARTY) --- */
+.panel {
+    background-color: var(--bg-panel);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-soft);
+    padding: 30px;
+    margin-bottom: 30px;
+    transition: box-shadow 0.3s ease;
+}
+
+.panel:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+}
+
+.panel h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 15px;
+}
+
+/* --- ROZVRŽENÍ --- */
+.top-grid {
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    align-items: end;
+}
+
+/* --- SOUČTY --- */
+.total-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--apple-blue);
+    margin: 15px 0;
+    letter-spacing: -0.03em;
+}
+
+.sub-amounts p {
+    margin: 6px 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- FORMULÁŘE (INPUTY & SELECTY) --- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: var(--text-muted);
+}
+
+input, select {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid transparent;
+    padding: 12px 16px;
+    border-radius: var(--radius-input);
+    font-size: 1rem;
+    color: var(--text-main);
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+/* Vynucení stejného Apple písma i pro políčka s datumem */
+input[type="date"] {
+    font-family: inherit; /* Vezme si čistý font z hlavní stránky */
+    color: var(--text-main);
+}
+/* OPRAVA PRO SELECT: Vypnutí ošklivého Windows stylu a přidání vlastní čisté šipky */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px; /* Vytvoření místa, aby text nezasahoval do šipky */
+    cursor: pointer;
+}
+
+input:focus, select:focus {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2); 
+    border-color: var(--apple-blue);
+}
+
+/* --- TLAČÍTKA --- */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: var(--radius-btn);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.1s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* Plynulé "zapadnutí" tlačítka při kliknutí */
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary, .btn-success { 
+    background-color: var(--apple-blue); 
+    color: white; 
+}
+
+.btn-primary:hover, .btn-success:hover { 
+    background-color: var(--apple-blue-hover); 
+}
+
+.btn-danger { 
+    background-color: rgba(255, 59, 48, 0.1); 
+    color: var(--apple-red); 
+    padding: 6px 14px; 
+    font-size: 0.85rem;
+}
+.btn-danger:hover { 
+    background-color: var(--apple-red); 
+    color: white;
+}
+
+.btn-edit { 
+    background-color: rgba(0, 113, 227, 0.1); 
+    color: var(--apple-blue); 
+    padding: 6px 14px; 
+    font-size: 0.85rem;
+}
+.btn-edit:hover { 
+    background-color: var(--apple-blue); 
+    color: white; 
+}
+.btn-renew { 
+    background-color: rgba(52, 199, 89, 0.1); 
+    color: var(--apple-green); 
+    padding: 6px 14px; 
+    font-size: 0.85rem;
+}
+.btn-renew:hover { 
+    background-color: var(--apple-green); 
+    color: white; 
+}
+/* Tlačítko Přidat na celou šířku */
+.form-group .btn-success {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* --- TABULKA --- */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+th {
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+tr {
+    transition: background-color 0.2s ease;
+}
+
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.015);
+}
+
+.row-danger {
+    background-color: rgba(255, 59, 48, 0.04);
+}
+
+.row-danger:hover {
+    background-color: rgba(255, 59, 48, 0.08);
+}
+
+/* --- ODZNAKY (Badges) --- */
+.badge {
+    background-color: var(--bg-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap; /* Zabrání zalamování textu na další řádek */
+}
+
+.badge-success {
+    background-color: rgba(52, 199, 89, 0.15);
+    color: #1f7a36;
+}
+
+/* --- FILTROVACÍ LIŠTA --- */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    background-color: transparent;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 20px;
+}
+
+.filter-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-item label {
+    margin-bottom: 0;
+}
+
+.filter-item select {
+    padding: 8px 40px 8px 12px;
+    font-size: 0.9rem;
+}
+
+/* --- AKCE V TABULCE --- */
+.actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+/* --- RESPONSIVITA --- */
+@media (max-width: 850px) {
+    .top-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* --- VLASTNÍ NAŠEPTÁVAČ (Custom Autocomplete) --- */
+.autocomplete-wrapper {
+    position: relative;
+}
+
+.custom-dropdown {
+    position: absolute;
+    top: calc(100% + 5px); /* Kousek pod políčkem */
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px); /* Efekt rozmazaného pozadí pod menu (Apple styl) */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 1000;
+    list-style: none;
+    padding: 6px;
+    margin: 0;
+    display: none; /* Ve výchozím stavu skryto */
+}
+/* Třída, kterou přidá JavaScript, když se má menu ukázat */
+.custom-dropdown.active {
+    display: block;
+}
+
+.custom-dropdown li {
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-main);
+    transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.custom-dropdown li:hover {
+    background-color: var(--apple-blue);
+    color: white;
+}
+/* --- GRAF --- */
+.chart-container {
+    max-width: 260px; /* Graf bude o hodně menší a elegantnější */
+    margin: 0 auto;
+    padding: 10px 0;
+}
+/* --- VLASTNÍ APPLE SELECTY --- */
+.custom-select-trigger {
+    background-color: rgba(0, 0, 0, 0.03);
+    border: 1px solid transparent;
+    padding: 12px 16px;
+    border-radius: var(--radius-input);
+    font-size: 1rem;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+/* Aby byly selecty ve filtru o něco menší */
+.filter-item .custom-select-trigger {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    min-width: 140px;
+}
+
+/* Kreslená šipka vpravo */
+.custom-select-trigger::after {
+    content: '';
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2386868b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.2s ease;
+}
+
+/* Efekt po rozkliknutí: modrý stín a otočená šipka */
+.custom-select-trigger.active {
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.2); 
+    border-color: var(--apple-blue);
+}
+.custom-select-trigger.active::after {
+    transform: rotate(180deg);
+}
+
+/* Skrytí ošklivých nativních selectů z prohlížeče */
+select.hidden-native {
+    display: none !important;
+}
